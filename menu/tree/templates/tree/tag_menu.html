@@ -1,0 +1,39 @@
+{% load static %}
+
+<ul class="menu">
+    {% for item in menu_items %}
+        <li>
+            {% if request.path == item.url or request.resolver_match.url_title == item.named_url %}
+    <span class="active">{{ item.title }}</span>
+{% else %}
+    {% if item.url %}
+        <a href="{% url 'posts:draw_menu' item.title %}">{{ item.title }}</a>
+    {% elif item.named_url %}
+        <a href="{% url item.named_url %}">{{ item.title }}</a>
+    {% else %}
+        <span>{{ item.title }}</span>
+    {% endif %}
+{% endif %}
+            
+            {% if item.children.all %}
+                <ul>
+                    {% for child in item.children.all %}
+                        <li>
+                            <a href="{% url 'posts:draw_menu' child.title %}">{{ child.title }}</a>
+                        </li>
+                        {% if child.children.all %}
+                            <ul>
+                                {% for subchild in child.children.all %}
+                                    <li><a href="{% url 'posts:draw_menu' subchild.title %}">{{ subchild.title }}</a></li>
+                                    <!-- Продолжайте вложенность, если необходимо -->
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
