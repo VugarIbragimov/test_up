@@ -25,8 +25,8 @@ UpTrader test task
 ```
 
 ### **Стек**
-![python version](https://img.shields.io/badge/Python-3.10-green)
-![django version](https://img.shields.io/badge/Django-4.17-blue)
+![python version](https://img.shields.io/badge/Python-3.9.6-green)
+![django version](https://img.shields.io/badge/Django-4.2.7-blue)
 
 
 ### **Запуск проекта в dev-режиме**
